@@ -26,7 +26,7 @@ with open(csvpath) as csvfile:
 
 for i in range(1, len(rev)):
     rev_change.append(int(rev[i]) - int(rev[i - 1]))
-    average_change = sum(rev_change)/len(rev_change)
+    average_change = round(sum(rev_change)/len(rev_change), 2)
 
     max_change = max(rev_change)
 
@@ -38,10 +38,11 @@ index_min = rev_change.index(min_change)
 date_max = date[index_max + 1]
 date_min = date[index_min + 1]
 
-print("Financial Analysis")
-print("------------------")
-print(f"Total Months: {len(date)}")
-print(f"Total: ${net_profit_losses}")
-print(f"Average Change: ${average_change}")
-print(f"Greatest Increase in Profits: {date_max} (${max_change})")
-print(f"Greatest Decrease in Profits: {date_min} (${min_change})")
+
+Results = (f"Financial Analysis\n------------------\nTotal Months: {len(date)}\nTotal: ${net_profit_losses}\nAverage Change: ${average_change}\nGreatest Increase in Profits: {date_max} (${max_change})\nGreatest Decrease in Profits: {date_min} (${min_change})")
+print(Results)
+
+text_path = os.path.join("Analysis", "Results.txt")
+file = open(text_path, "w")
+file.write(Results)
+file.close()
